@@ -20,16 +20,16 @@ app.get('/', (req, res) => {
   });
 });
 
+
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'mysql',
-  database: 'school_management',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'mysql',
+  database: process.env.DB_NAME || 'school_management',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 });
-
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
   if (lat1 === lat2 && lon1 === lon2) return 0;
